@@ -1,5 +1,16 @@
-<div class="card border-dotted">
-  <p>{{cardTitle}}</p>
-  <p>або</p>
-  <app-button [btnTitile]="btnTitile"></app-button>
+<div class="card border-dotted" *ngIf="certificate else addNew">
+  <b>Common Name: {{certificate}}</b>
+  <b>Issuer CN:</b>
+  <b>Valid from:</b>
+  <b>Valid to:</b>
 </div>
+
+<ng-template #addNew>
+  <div class="card border-dotted">
+    <p>{{cardTitle}}</p>
+    <p>або</p>
+    <!-- <label for="file" class="inputfile">Виберіть через стандартний діалог</label> -->
+    <!-- <input id="file" type="file"> -->
+    <button>{{btnTitile}}</button>
+  </div>
+</ng-template>

@@ -7,7 +7,9 @@ import { Certificate } from 'src/app/models/certificate.model';
   styleUrls: ['./certificate-card.component.scss']
 })
 export class CertificateCardComponent {
-  @Input() certificate: Certificate | undefined;
+  // @Input() certificate: Certificate | undefined;
+  @Input() certificate: boolean | undefined;
+  // @Input() type: boolean | undefined;
   cardTitle: string = 'Перетягніть файл сертифікату сюди'
   btnTitile: string = 'Виберіть через стандартний діалог';
 

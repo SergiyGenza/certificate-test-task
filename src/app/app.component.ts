@@ -7,5 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'certificate-test-task';
-  btnTitle = 'Додати'
+  btnTitle = 'Додати';
+  certificates = true;
+  addNewSertificate: boolean = false;
+
+  onNewSertificateAdd(e: boolean) {
+    this.addNewSertificate = e;
+  }
+
+  onCardOpen(e: string) {
+    if(e) {
+      this.addNewSertificate = true;
+    }
+  }
 }

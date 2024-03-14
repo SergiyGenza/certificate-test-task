@@ -7,4 +7,16 @@
 .content {
   display: flex;
   justify-content: space-between;
+  margin-top: 4rem;
+}
+
+.left-side {
+  text-align: center;
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 450px;
 }

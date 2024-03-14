@@ -1,13 +1,23 @@
 <div class="container">
-  <app-button [btnTitile]="btnTitle"></app-button>
   <div class="content">
     <div class="left-side">
-      <p>
-        немає жодного сертифікату
-      </p>
+      <app-button [type]="'addNewSertificate'" [height]="'44px'" [width]="'162px'" [btnTitile]="btnTitle"
+        (addNewSertificate)="onNewSertificateAdd($event)"></app-button>
+      <div class="certificates-list" *ngIf="true else noCertificates">
+        <!-- <app-button [height]="'48px'" [width]="'100%'" [btnTitile]="'Микола'" [type]="'showInfo'"
+          (openCard)="onCardOpen($event)">&#9654;</app-button>
+        <app-button [height]="'48px'" [width]="'100%'" [btnTitile]="'Григорій'" [type]="'showInfo'"
+          (openCard)="onCardOpen($event)">&#9654;</app-button> -->
+      </div>
+      <ng-template #noCertificates>
+        <p *ngIf="!addNewSertificate">
+          Немає жодного сертифікату
+        </p>
+      </ng-template>
     </div>
     <div class="right-side">
-      <app-certificate-card></app-certificate-card>
+      <app-certificate-card *ngIf="addNewSertificate"></app-certificate-card>
+      <p></p>
     </div>
   </div>
 </div>
