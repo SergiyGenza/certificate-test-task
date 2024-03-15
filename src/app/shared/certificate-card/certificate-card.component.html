@@ -1,8 +1,8 @@
 <div class="card border-dotted" *ngIf="certificate else addNew">
-  <b>Common Name: {{certificate}}</b>
-  <b>Issuer CN:</b>
-  <b>Valid from:</b>
-  <b>Valid to:</b>
+  <p><b>Common Name:</b> {{decodedCertificate!.commonName}}</p>
+  <p><b>Issuer CN:</b> {{decodedCertificate!.cn}}</p>
+  <p><b>Valid from:</b> {{decodedCertificate!.validFrom}}</p>
+  <p><b>Valid to:</b> {{decodedCertificate!.validTo}}</p>
 </div>
 
 <ng-template #addNew>
@@ -11,6 +11,7 @@
     <p>або</p>
     <!-- <label for="file" class="inputfile">Виберіть через стандартний діалог</label> -->
     <!-- <input id="file" type="file"> -->
+    <input type="file" (change)="onFileSelected($event)">
     <button>{{btnTitile}}</button>
   </div>
 </ng-template>
