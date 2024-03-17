@@ -1,3 +1,4 @@
-<button [ngStyle]="{'width': width, 'height': height}" (click)="onBtnClick()">
+<button [ngStyle]="{'width': width, 'height': height, 'border-radius': borderRadius}" (click)="onBtnClick()">
   {{btnTitile}}
+  <ng-content></ng-content>
 </button>

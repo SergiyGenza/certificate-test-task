@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() btnTitile: string | undefined;
   @Input() type: string | undefined;
+  @Input() borderRadius: string | undefined;
   @Input() addNew: boolean | undefined;
   @Input() width: string | undefined;
   @Input() height: string | undefined;

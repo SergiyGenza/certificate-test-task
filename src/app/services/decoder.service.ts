@@ -15,13 +15,11 @@ export class DecoderService {
   public decodeCertificate(certData: Uint8Array): Cert | null {
     try {
       const result = ASN1.decode(certData);
-
       if (result.typeName() !== 'SEQUENCE') {
         throw 'Неправильна структура конверта сертифіката (очікується SEQUENCE) ';
       }
-
-      const commonName: string = result.sub![0].sub![3].sub![2].toPrettyString();
-      const cn: string = result.sub![0].sub![5].sub![1].toPrettyString();
+      const cn: string = result.sub![0].sub![3].sub![2].toPrettyString();
+      const commonName: string = result.sub![0].sub![5].sub![1].toPrettyString();
       const validFrom: string = result.sub![0].sub![4].sub![0].toPrettyString();
       const validTo: string = result.sub![0].sub![4].sub![1].toPrettyString();
 
@@ -61,10 +59,12 @@ export class DecoderService {
   }
 
   private setCertificateInLocalStorage(cert: Cert): void {
-    const foundCert = this.certArray?.find((i: { cn: string; }) => i.cn === cert.cn);
-    if (!foundCert) {
-      this.certArray?.push(cert);
-      localStorage.setItem('certificate', JSON.stringify(this.certArray));
-    }
+    // const foundCert = this.certArray?.find((i: { commonName: string; }) => i.commonName === cert.commonName);
+    // if (!foundCert) {
+    //   this.certArray?.push(cert);
+    //   localStorage.setItem('certificate', JSON.stringify(this.certArray));
+    // }
+    this.certArray?.push(cert);
+    localStorage.setItem('certificate', JSON.stringify(this.certArray));
   }
 }

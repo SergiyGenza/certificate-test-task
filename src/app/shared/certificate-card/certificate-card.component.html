@@ -1,4 +1,4 @@
-<div class="card border-dotted" *ngIf="certificate else addNew">
+<div class="card border-dotted flex" *ngIf="certificate else addNew">
   <p><b>Common Name:</b> {{certificate!.commonName}}</p>
   <p><b>Issuer CN:</b> {{certificate!.cn}}</p>
   <p><b>Valid from:</b> {{certificate!.validFrom}}</p>
@@ -6,11 +6,14 @@
 </div>
 
 <ng-template #addNew>
-  <div class="card border-dotted">
+  <div class="card border-dotted table" (drop)="onDrop($event)" (dragover)="onDragover($event)">
     <p>{{cardTitle}}</p>
     <p>або</p>
-    <!-- <label for="file" class="inputfile">Виберіть через стандартний діалог</label> -->
-    <input type="file" (change)="onFileSelected($event)">
-    <button>{{btnTitile}}</button>
+    <button>
+      <label for="upload-file">
+        {{btnTitile}}
+        <input id="upload-file" hidden type="file" (change)="onFileSelected($event)">
+      </label>
+    </button>
   </div>
 </ng-template>

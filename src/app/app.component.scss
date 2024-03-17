@@ -7,16 +7,27 @@
 .content {
   display: flex;
   justify-content: space-between;
+
   margin-top: 4rem;
 }
 
 .left-side {
-  text-align: center;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .certificates-list {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
-  width: 450px;
+}
+
+@media screen and (max-width: 1000px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 }
