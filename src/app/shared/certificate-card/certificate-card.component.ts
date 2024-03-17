@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Certificate } from 'src/app/models/certificate.model';
+import { Cert } from 'src/app/models/certificate.model';
 import { DecoderService } from 'src/app/services/decoder.service';
 
 @Component({
@@ -8,17 +8,14 @@ import { DecoderService } from 'src/app/services/decoder.service';
   styleUrls: ['./certificate-card.component.scss']
 })
 export class CertificateCardComponent {
-  // @Input() certificate: Certificate | undefined;
-  @Input() certificate: boolean | undefined;
-  // @Input() type: boolean | undefined;
+  @Input() certificate: Cert | undefined | null;
   cardTitle: string = 'Перетягніть файл сертифікату сюди'
   btnTitile: string = 'Виберіть через стандартний діалог';
-
-  decodedCertificate: Certificate | undefined | null;
+  decodedCertificate: Cert | undefined | null;
 
   constructor(private decoderService: DecoderService) { }
 
-  onFileSelected(event: any): void {
+  public onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -30,4 +27,5 @@ export class CertificateCardComponent {
       reader.readAsArrayBuffer(file);
     }
   }
+
 }
