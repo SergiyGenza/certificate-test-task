@@ -1,6 +1,7 @@
-export interface Certificate {
-  name: string,
+export interface Cert {
+  commonName: string,
   cn: string,
-  validFrom: Date;
-  validTo: Date;
+  validFrom: string;
+  validTo: string;
+  serialNumber: string;
 }

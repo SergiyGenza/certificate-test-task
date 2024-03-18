@@ -1,1 +1,7 @@
-<button>{{btnTitile}}</button>
+<button 
+  [ngStyle]="{'width': width, 'height': height, 'border-radius': borderRadius}"
+  [ngClass]="{'btn-certificate' : type == 'showInfo', 'active': isActive}" 
+  (click)="onBtnClick()">
+  {{btnTitile}}
+  <ng-content></ng-content>
+</button>
