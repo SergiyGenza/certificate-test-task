@@ -1,12 +1,25 @@
 <div class="container">
   <div class="content">
     <div class="left-side">
-      <app-button [type]="'addNewSertificate'" [height]="'44px'" [width]="'162px'" [btnTitile]="btnTitle"
-        [borderRadius]="borderRadius" [addNew]="addNew"
-        (addNewSertificateEmitter)="onNewSertificateAdd($event)"></app-button>
+      <app-button 
+        [type]="'addNewSertificate'"
+        [height]="'44px'"
+        [width]="'162px'"
+        [btnTitile]="btnTitle"
+        [borderRadius]="borderRadius"
+        [addNew]="addNew"
+        (addNewSertificateEmitter)="onNewSertificateAdd($event)">
+      </app-button>
       <div class="certificates-list" *ngIf="certArray?.length !=0  else noCertificates">
-        <app-button *ngFor="let cert of certArray" [height]="'48px'" [width]="'450px'" [type]="'showInfo'"
-          [btnTitile]="cert.commonName" (openCard)="onCardOpen($event, cert)"><span>&#9654;</span></app-button>
+        <app-button *ngFor="let cert of certArray; let i = index"
+          [height]="'48px'"
+          [width]="'450px'"
+          [type]="'showInfo'"
+          [btnTitile]="cert.commonName"
+          (openCard)="onCardOpen($event, cert)"
+          [isActive]="activeIndex === i || openCert?.commonName === cert.commonName"
+          (click)="activateButton(i)">
+        </app-button>
       </div>
       <ng-template #noCertificates>
         <p *ngIf="!addNew">
@@ -15,8 +28,10 @@
       </ng-template>
     </div>
     <div class="right-side">
-      <app-certificate-card *ngIf="addNew || openCert" [certificate]="openCert"
-        (openCert)="openCertificate($event)"></app-certificate-card>
+      <app-certificate-card *ngIf="addNew || openCert" 
+        [certificate]="openCert"
+        (openCert)="openCertificate($event)">
+      </app-certificate-card>
       <p></p>
     </div>
   </div>

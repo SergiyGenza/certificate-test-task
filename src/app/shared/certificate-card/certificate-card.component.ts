@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cert } from 'src/app/models/certificate.model';
 import { DecoderService } from 'src/app/services/decoder.service';
 
 @Component({
   selector: 'app-certificate-card',
   templateUrl: './certificate-card.component.html',
-  styleUrls: ['./certificate-card.component.scss']
+  styleUrls: ['./certificate-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CertificateCardComponent {
   @Input() certificate: Cert | undefined | null;
@@ -15,7 +16,6 @@ export class CertificateCardComponent {
 
   cardTitle: string = 'Перетягніть файл сертифікату сюди'
   btnTitile: string = 'Виберіть через стандартний діалог';
-  decodedCertificate: Cert | undefined | null;
 
   constructor(private decoderService: DecoderService) { }
 
@@ -24,14 +24,14 @@ export class CertificateCardComponent {
     this.parseFile(file);
   }
 
-  public onDrop(event: DragEvent) {
+  public onDrop(event: DragEvent): void {
     event.preventDefault();
     this.drop.emit(event);
     const file = event.dataTransfer?.files[0];
     this.parseFile(file);
   }
 
-  public onDragover(event: DragEvent) {
+  public onDragover(event: DragEvent): void {
     event.preventDefault();
   }
 
@@ -41,8 +41,8 @@ export class CertificateCardComponent {
       reader.onload = () => {
         const arrayBuffer = reader.result as ArrayBuffer;
         const certData = new Uint8Array(arrayBuffer);
-        this.decodedCertificate = this.decoderService.decodeCertificate(certData);
-        this.openCertificate(this.decodedCertificate);
+        const decodedCertificate = this.decoderService.decodeCertificate(certData);
+        this.openCertificate(decodedCertificate);
       };
       reader.readAsArrayBuffer(file);
     }

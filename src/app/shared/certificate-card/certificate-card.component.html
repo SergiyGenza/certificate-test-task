@@ -1,4 +1,4 @@
-<div class="card border-dotted flex" *ngIf="certificate else addNew">
+<div class="card border-solid flex" *ngIf="certificate else addNew">
   <p><b>Common Name:</b> {{certificate!.commonName}}</p>
   <p><b>Issuer CN:</b> {{certificate!.cn}}</p>
   <p><b>Valid from:</b> {{certificate!.validFrom}}</p>
@@ -12,7 +12,7 @@
     <button>
       <label for="upload-file">
         {{btnTitile}}
-        <input id="upload-file" hidden type="file" (change)="onFileSelected($event)">
+        <input id="upload-file" accept=".pem,.cer,.crt,.der" hidden type="file" (change)="onFileSelected($event)">
       </label>
     </button>
   </div>

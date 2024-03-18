@@ -3,4 +3,5 @@ export interface Cert {
   cn: string,
   validFrom: string;
   validTo: string;
+  serialNumber: string;
 }

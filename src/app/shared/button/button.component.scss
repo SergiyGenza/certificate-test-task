@@ -1,7 +1,25 @@
 button {
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // padding: 0 1rem;
   cursor: pointer;
+}
+
+button:active {
+  background-color: #ebebeb;
+}
+
+.btn-certificate {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  border: 1px solid black;
+}
+
+.active {
+  background-color: #ebebeb;
+}
+
+.active::after {
+  content: "▶"
 }
