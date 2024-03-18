@@ -1,35 +1,30 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Certificate } from 'src/app/models/certificate.model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   @Input() btnTitile: string | undefined;
   @Input() type: string | undefined;
+  @Input() borderRadius: string | undefined;
+  @Input() addNew: boolean | undefined;
   @Input() width: string | undefined;
   @Input() height: string | undefined;
-  @Output() addNewSertificate = new EventEmitter<boolean>;
-  @Output() openCard = new EventEmitter<string>
+  @Input() isActive: boolean = false;
+  @Output() addNewSertificateEmitter = new EventEmitter<boolean>;
+  @Output() openCard = new EventEmitter<string>;
 
-  ngOnInit(): void {
-  }
-
-  onBtnClick() {
+  public onBtnClick(): void {
     switch (this.type) {
       case 'addNewSertificate':
-        this.addNewSertificate.emit(true);
-        this.btnTitile = 'Назад';
-        this.type = 'back';
-        break;
-      case 'back':
-        this.addNewSertificate.emit(false);
-        this.btnTitile = 'Додати';
-        this.type = "addNewSertificate"
+        this.addNew = !this.addNew;
+        this.addNewSertificateEmitter.emit(this.addNew);
         break
       case 'showInfo':
+        this.addNewSertificateEmitter.emit(false);
         this.openCard.emit(this.btnTitile);
         break;
       default:

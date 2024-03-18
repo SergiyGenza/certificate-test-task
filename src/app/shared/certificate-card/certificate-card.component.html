@@ -1,16 +1,19 @@
-<div class="card border-dotted" *ngIf="certificate else addNew">
-  <b>Common Name: {{certificate}}</b>
-  <b>Issuer CN:</b>
-  <b>Valid from:</b>
-  <b>Valid to:</b>
+<div class="card border-solid flex" *ngIf="certificate else addNew">
+  <p><b>Common Name:</b> {{certificate!.commonName}}</p>
+  <p><b>Issuer CN:</b> {{certificate!.cn}}</p>
+  <p><b>Valid from:</b> {{certificate!.validFrom}}</p>
+  <p><b>Valid to:</b> {{certificate!.validTo}}</p>
 </div>
 
 <ng-template #addNew>
-  <div class="card border-dotted">
+  <div class="card border-dotted table" (drop)="onDrop($event)" (dragover)="onDragover($event)">
     <p>{{cardTitle}}</p>
     <p>або</p>
-    <!-- <label for="file" class="inputfile">Виберіть через стандартний діалог</label> -->
-    <!-- <input id="file" type="file"> -->
-    <button>{{btnTitile}}</button>
+    <button>
+      <label for="upload-file">
+        {{btnTitile}}
+        <input id="upload-file" accept=".pem,.cer,.crt,.der" hidden type="file" (change)="onFileSelected($event)">
+      </label>
+    </button>
   </div>
 </ng-template>
